@@ -1,13 +1,17 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 
-import { styles } from './styles'
+import AntDesign from '@expo/vector-icons/AntDesign'
+
+import Logo from '../../../public/logo.svg'
 import { gray300 } from '../../tokens/colors'
+
+import { styles } from './styles'
 
 export function Home() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={{ color: '#fff' }}>LOGOTIPO</Text>
+        <Logo />
       </View>
 
       <View style={styles.newTask}>
@@ -18,9 +22,22 @@ export function Home() {
         />
 
         <TouchableOpacity style={styles.button}>
-          <Text>+</Text>
+          <AntDesign name="pluscircleo" size={16} color="white" />
         </TouchableOpacity>
       </View>
+
+      <View style={styles.headerTasks}>
+        <View style={styles.created}>
+          <Text style={styles.createdTitle}>Criadas</Text>
+          <Text style={styles.counter}>0</Text>
+        </View>
+        <View style={styles.completed}>
+          <Text style={styles.completedTitle}>Concluídas</Text>
+          <Text style={styles.counter}>0</Text>
+        </View>
+      </View>
+
+      <View style={styles.divider} />
     </View>
   )
 }
