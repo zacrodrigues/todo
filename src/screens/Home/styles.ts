@@ -10,6 +10,7 @@ import {
   gray700,
   purple,
   gray100,
+  gray300,
 } from '../../tokens/colors'
 
 export const styles = StyleSheet.create({
@@ -51,7 +52,8 @@ export const styles = StyleSheet.create({
   headerTasks: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   created: {
     flexDirection: 'row',
@@ -87,5 +89,44 @@ export const styles = StyleSheet.create({
     height: 1,
     marginLeft: 20,
     marginRight: 20,
+    marginTop: 20,
+  },
+  empty: {
+    padding: 20,
+    marginTop: 48,
+    alignItems: 'center',
+  },
+  emptyIcon: {
+    marginBottom: 16,
+  },
+  emptyTitle: {
+    fontSize: 14,
+    color: gray300,
+    fontWeight: 'bold',
+  },
+  emptyText: {
+    fontSize: 14,
+    color: gray300,
+  },
+  taskList: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 15,
+    gap: 8,
+  },
+  task: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+    backgroundColor: gray500,
+    padding: 12,
+    borderRadius: 8,
+    borderColor: gray400,
+    borderWidth: 1,
+  },
+  taskDescription: {
+    color: gray100,
+    flex: 1,
+    fontSize: 16,
   },
 })
