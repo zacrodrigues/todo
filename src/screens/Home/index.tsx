@@ -1,21 +1,44 @@
 import { useState } from 'react'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 
-import { AntDesign, Ionicons, Entypo } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
 
 import Logo from '../../../public/logo.svg'
 
-import { blue, gray300, gray400 } from '../../tokens/colors'
+import { gray300 } from '../../tokens/colors'
+
+import { EmptyList } from '../../components/EmptyList'
+import { TaskBox } from '../../components/TaskBox'
 
 import { styles } from './styles'
 
+interface Task {
+  task: string
+  isChecked: boolean
+}
+
 export function Home() {
   const [newTask, setNewTask] = useState('')
-  const [tasks, setTasks] = useState<string[]>([])
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  const tasksChecked = tasks.filter((task) => task.isChecked)
 
   function handleAddNewTask() {
-    setTasks((prevState) => [...prevState, newTask])
+    setTasks((prevState) => [...prevState, { task: newTask, isChecked: false }])
     setNewTask('')
+  }
+
+  function handleCheckTask(task: Task) {
+    const copyTasks = [...tasks]
+    const taskIndex = copyTasks.findIndex((item) => item.task === task.task)
+    copyTasks[taskIndex].isChecked = !task.isChecked
+    setTasks(copyTasks)
+  }
+
+  function handleRemoveTask(task: Task) {
+    const copyTasks = [...tasks]
+    const newArray = copyTasks.filter((item) => item.task !== task.task)
+    setTasks(newArray)
   }
 
   return (
@@ -41,11 +64,11 @@ export function Home() {
       <View style={styles.headerTasks}>
         <View style={styles.created}>
           <Text style={styles.createdTitle}>Criadas</Text>
-          <Text style={styles.counter}>0</Text>
+          <Text style={styles.counter}>{tasks.length}</Text>
         </View>
         <View style={styles.completed}>
           <Text style={styles.completedTitle}>Concluídas</Text>
-          <Text style={styles.counter}>0</Text>
+          <Text style={styles.counter}>{tasksChecked.length}</Text>
         </View>
       </View>
 
@@ -53,29 +76,17 @@ export function Home() {
         <>
           <View style={styles.divider} />
 
-          <View style={styles.empty}>
-            <Ionicons
-              name="clipboard-outline"
-              size={56}
-              color={gray400}
-              style={styles.emptyIcon}
-            />
-            <Text style={styles.emptyTitle}>
-              Você ainda não tem tarefas cadastradas
-            </Text>
-            <Text style={styles.emptyText}>
-              Crie tarefas e organize seus itens a fazer
-            </Text>
-          </View>
+          <EmptyList />
         </>
       ) : (
         <View style={styles.taskList}>
           {tasks.map((task) => (
-            <View key={task} style={styles.task}>
-              <Entypo name="circle" size={16} color={blue} />
-              <Text style={styles.taskDescription}>{task}</Text>
-              <Ionicons name="trash-outline" size={16} color={gray300} />
-            </View>
+            <TaskBox
+              key={task.task}
+              task={task}
+              handleCheckTask={handleCheckTask}
+              handleRemoveTask={handleRemoveTask}
+            />
           ))}
         </View>
       )}

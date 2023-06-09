@@ -3,14 +3,13 @@ import { StyleSheet } from 'react-native'
 import {
   blue,
   blueDark,
+  purple,
+  gray100,
   gray200,
   gray400,
   gray500,
   gray600,
   gray700,
-  purple,
-  gray100,
-  gray300,
 } from '../../tokens/colors'
 
 export const styles = StyleSheet.create({
@@ -54,6 +53,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 20,
     paddingRight: 20,
+    marginTop: 20,
   },
   created: {
     flexDirection: 'row',
@@ -91,42 +91,10 @@ export const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: 20,
   },
-  empty: {
-    padding: 20,
-    marginTop: 48,
-    alignItems: 'center',
-  },
-  emptyIcon: {
-    marginBottom: 16,
-  },
-  emptyTitle: {
-    fontSize: 14,
-    color: gray300,
-    fontWeight: 'bold',
-  },
-  emptyText: {
-    fontSize: 14,
-    color: gray300,
-  },
   taskList: {
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 15,
     gap: 8,
-  },
-  task: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-    backgroundColor: gray500,
-    padding: 12,
-    borderRadius: 8,
-    borderColor: gray400,
-    borderWidth: 1,
-  },
-  taskDescription: {
-    color: gray100,
-    flex: 1,
-    fontSize: 16,
   },
 })
