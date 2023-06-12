@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
 import { AntDesign } from '@expo/vector-icons'
 
@@ -79,16 +79,18 @@ export function Home() {
           <EmptyList />
         </>
       ) : (
-        <View style={styles.taskList}>
-          {tasks.map((task) => (
+        <FlatList
+          data={tasks}
+          style={styles.taskList}
+          keyExtractor={(item) => item.task}
+          renderItem={({ item }) => (
             <TaskBox
-              key={task.task}
-              task={task}
+              task={item}
               handleCheckTask={handleCheckTask}
               handleRemoveTask={handleRemoveTask}
             />
-          ))}
-        </View>
+          )}
+        />
       )}
     </View>
   )

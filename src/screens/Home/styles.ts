@@ -94,7 +94,8 @@ export const styles = StyleSheet.create({
   taskList: {
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 15,
+    marginTop: 15,
+    marginBottom: 20,
     gap: 8,
   },
 })

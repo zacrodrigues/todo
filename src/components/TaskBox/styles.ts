@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: gray400,
     borderWidth: 1,
+    marginBottom: 8,
   },
   taskChecked: {
     flexDirection: 'row',
@@ -22,6 +23,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: gray500,
     borderWidth: 1,
+    marginBottom: 8,
   },
   taskDescription: {
     color: gray100,
